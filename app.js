@@ -1,9 +1,4 @@
-import Account from "./pages/account.js";
-import Detail from "./pages/detail.js";
 import Home from "./pages/home.js";
-import Login from "./pages/login.js";
-import Menu from "./pages/menu.js";
-import Register from "./pages/register.js";
 
 class App {
   constructor() {
@@ -21,8 +16,7 @@ class App {
 const app = new App();
 // render giao dien
 
-  const login = new Detail();
-  app.renderComponent(login);
-
+const login = new Home();
+app.renderComponent(login);
 
 export default app;

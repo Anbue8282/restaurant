@@ -539,6 +539,7 @@ select {
   padding: 10px;
   margin-bottom: 10px;
   box-sizing: border-box;
+  max-height: 200px;
 }
 
 textarea {

@@ -5,8 +5,10 @@ import app from "../app.js";
 import { database, firebaseApp } from "../data/firebase-app.js";
 import {
   collection,
-  getDocs,
   addDoc,
+  doc,
+  getDoc,
+  updateDoc,
 } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
 import Menu from "./menu.js";
@@ -519,9 +521,10 @@ export default class Home {
 
     // Add submit button
     const submitButton = document.createElement("button");
-    submitButton.type = "submit";
+    submitButton.type = "button";
     submitButton.className = "btn btn-primary";
     submitButton.textContent = "Book";
+    submitButton.addEventListener("click", this.booktable.bind(this));
     form.appendChild(submitButton);
 
     // Append form to container
@@ -561,67 +564,81 @@ export default class Home {
   async booktable(event) {
     event.preventDefault();
     //get input data
-    const name = "";
-    const phonenumber = "";
-    const email = "";
-    const date = "";
-    const hour = "";
-    const guets = "";
-    const note = "";
+    const name = document.getElementById("name").value;
+    const phonenumber = document.getElementById("phone").value;
+    const email = document.getElementById("email").value;
+    const date = document.getElementById("date").value;
+    const hour = document.getElementById("time").value;
+    const guests = document.getElementById("guests").value;
+    const note = document.getElementById("note").value;
+    const _this = this;
     // validate form
-    if (!name && !phonenumber && !email && !date && !hour && !guets && !note) {
+    if (!name && !phonenumber && !email && !date && !hour && !guests && !note) {
       alert("pls fill all form");
       return;
-    }
-
-    //creatre data on fire strore
-    try {
-      const auth = getAuth(firebaseApp);
-      const user = auth.currentUser;
-      const docRef = await addDoc(collection(database, "books"), {
-        name: name,
-        email: email,
-        phonenumber: phonenumber,
-        hour: hour,
-        date: date,
-        guets: guets,
-        note: note,
-        created_by: user.uid,
-      });
-      console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
+    } else {
+      // confirm co chac chan dat ban khong
+      const confirm_book = confirm(
+        `Confirm your booking here:\n
+        name: ${name},
+        email: ${email},
+        phonenumber: ${phonenumber},
+        hour: ${hour},
+        date: ${date},
+        guests: ${guests},
+        note: ${note},
+        `
+      );
+      if (!confirm_book) {
+        // neu confirm no => khong lam gi them
+        return;
+      } else {
+        // yes => luu du lieu vao firestore
+        try {
+          const auth = getAuth(firebaseApp);
+          const user = auth.currentUser;
+          await _this.updatepoint();
+          const docRef = await addDoc(collection(database, "books"), {
+            name: name,
+            email: email,
+            phonenumber: phonenumber,
+            hour: hour,
+            date: date,
+            guests: guests,
+            note: note,
+            created_by: user.uid,
+          });
+          console.log("Document written with ID: ", docRef.id);
+          alert("Book successfully!");
+        } catch (e) {
+          console.error("Error adding document: ", e);
+        }
+      }
     }
   }
   async updatepoint() {
     // Reference the document
-    try {
-      const auth = getAuth(firebaseApp);
-      const user = auth.currentUser;
-      const docRef1 = doc(database, "users", user.uid);
+    const auth = getAuth(firebaseApp);
+    const user = auth.currentUser;
+    const docRef1 = doc(database, "users", user.uid);
 
-      // Fetch the document
-      const docSnap = await getDoc(docRef1);
-      const newpoint = docSnap.data().point + 100;
+    // Fetch the document
+    const docSnap = await getDoc(docRef1);
+    const newpoint = docSnap.data().point + 100;
 
-      if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
-      } else {
-        console.log("No such document!");
-      }
-
-      // Reference the document you want to update
-      const docRef2 = doc(database, "users", user.uid);
-
-      // Update the document
-      await updateDoc(docRef2, {
-        point: newpoint,
-      });
-      console.log("Document written with ID: ", docRef2.id);
-      alert("Create post successfully");
-    } catch (e) {
-      console.error("Error adding document: ", e);
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+    } else {
+      console.log("No such document!");
     }
+
+    // Reference the document you want to update
+    const docRef2 = doc(database, "users", user.uid);
+
+    // Update the document
+    await updateDoc(docRef2, {
+      point: newpoint,
+    });
   }
   goto_login() {
     const login = new Login();
