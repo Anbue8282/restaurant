@@ -1,0 +1,596 @@
+/* General Styles */
+body {
+  font-family: "Single Day", cursive;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Navigation Styles */
+nav {
+  width: 100%;
+  background-color: orange;
+  height: 45px;
+  color: white;
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+}
+
+.nav-menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu li {
+  margin-right: 10px;
+  line-height: 45px;
+  cursor: pointer;
+}
+
+.nav-menu li a {
+  text-decoration: none;
+  color: white;
+  padding: 0 10px;
+  height: 100%;
+}
+
+#navAvatar {
+  height: 30px;
+  width: 30px;
+}
+
+.nav-menu li:hover {
+  background-color: white;
+  color: black;
+}
+
+.nav-menu li a:hover {
+  color: black;
+}
+
+.hamburger-menu {
+  display: none; /* Hidden on larger screens */
+  cursor: pointer;
+  padding: 10px;
+}
+
+@media (max-width: 767px) {
+  .nav-menu {
+    display: none; /* Hidden on small screens */
+    flex-direction: column;
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 100%;
+    background-color: orange;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  }
+
+  .nav-menu.active {
+    display: flex; /* Show when active */
+  }
+
+  .hamburger-menu {
+    display: block; /* Show on small screens */
+  }
+}
+
+/* Container Styles */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.image-container {
+  position: relative;
+}
+
+/* Đặt vị trí của .m1 tương đối với .image-container */
+.m1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 60px;
+  font-family: "Single Day", cursive;
+  z-index: 1; /* Đảm bảo .m1 nằm trên hình ảnh */
+}
+/* Food Detail Styles */
+#about .title,
+#menu .title,
+#admin .title,
+#customer-feedback .title {
+  font-weight: 700;
+  font-family: "Single Day", cursive;
+  font-size: 40px;
+  text-align: center;
+  text-transform: capitalize;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+#about .content,
+#book > .content {
+  text-align: center;
+  font-size: 20px;
+}
+
+#food-detail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+#food-detail video,
+#food-detail img {
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+#food-info {
+  flex: 1;
+}
+
+#comments-section {
+  flex: 1;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#comments-section ul {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 0;
+  list-style-type: none;
+  margin: 0;
+  font-size: 14px;
+}
+
+.comment-item {
+  background-color: #f9f9f9;
+  padding: 8px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Comment Form Styles */
+#comment-form {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+#comment-form input[type="text"] {
+  flex: 1;
+  padding: 8px;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+#comment-form button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+#comment-form button img {
+  border: #f9f9f9;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+/* Menu Styles */
+#menu {
+  text-align: center;
+}
+
+#menu .title {
+  font-size: 45px;
+  font-weight: 800;
+}
+
+#menu .grid-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 20px;
+}
+
+#menu .grid-list .button {
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin: 15px;
+  background-color: transparent;
+  font-weight: 800;
+  padding: 10px;
+}
+
+#menu .grid-list button:hover {
+  border: 2px solid orange;
+}
+
+#menu .grid-list .chosen {
+  border: 2px solid orange;
+}
+
+#menu .grid-list button img {
+  max-width: 45px;
+  max-height: 45px;
+}
+.filter-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+#dish-list .card {
+  display: block;
+}
+
+/* Filter Styles */
+.filter {
+  width: 250px;
+  height: calc(100vh - 45px);
+  border-right: 1px solid #ddd;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s;
+  position: fixed;
+  top: 45px;
+  background-color: white;
+  z-index: 100;
+}
+
+.filter.collapsed {
+  width: 50px;
+  overflow: hidden;
+}
+
+.filter button {
+  background-color: white;
+  color: black;
+  margin-bottom: 10px;
+  text-align: left;
+  width: 200px;
+  display: block;
+  border-radius: 0;
+  padding: 10px;
+  box-sizing: border-box;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.filter button:hover {
+  background-color: #f0f0f0;
+  color: black;
+}
+
+.filter .toggle-btn {
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 10px;
+  width: 50px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.filter .toggle-btn img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+/* Main Content Styles */
+.main-content {
+  font-family: "Single Day", cursive;
+  margin-left: 50px;
+  flex: 1;
+  padding: 20px;
+  transition: margin-left 0.3s;
+}
+
+.main-content.collapsed {
+  margin-left: 250px;
+}
+
+/* Card Styles */
+.card {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card-body {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Footer Styles */
+.footer {
+  background-color: #222;
+  color: #fff;
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-logo {
+  margin-right: 12px;
+}
+
+.footer-logo img {
+  max-width: 180px;
+  border-radius: 50%;
+}
+
+.footer-info {
+  text-align: center;
+}
+
+.footer-feedback {
+  max-width: 400px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-feedback h4 {
+  margin-bottom: 15px;
+}
+
+.footer-feedback form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-feedback .form-control {
+  padding: 10px;
+}
+
+.footer-feedback button {
+  background-color: #f39c12;
+  border: 1px solid #e67e22;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.footer-feedback button:hover {
+  background-color: #e67e22;
+  border-color: #d35400;
+}
+
+/* Reservation Form Styles */
+#reservationForm {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 10px 20px;
+}
+
+#reservationForm .form-label {
+  font-weight: bold;
+}
+
+#reservationForm .form-control {
+  border-radius: 4px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+}
+
+#reservationForm .btn-primary {
+  background-color: orange;
+  border-color: orange;
+}
+
+#reservationForm .btn-primary:hover {
+  background-color: darkorange;
+  border-color: darkorange;
+}
+
+.invalid-feedback {
+  font-size: 0.875em;
+  color: #dc3545;
+}
+
+.booking-message {
+  width: 100%;
+  text-align: center;
+  font-size: larger;
+  margin-bottom: 30px;
+}
+
+.hide {
+  display: none;
+}
+
+/* Media Queries */
+@media (max-width: 767px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-logo {
+    margin-bottom: 10px;
+  }
+
+  .footer-feedback {
+    margin-left: 0;
+    width: 300px;
+  }
+
+  .nav-menu {
+    display: none; /* Hide horizontal menu on small screens */
+    flex-direction: column; /* Show vertical menu */
+  }
+
+  .nav-menu.active {
+    display: flex; /* Show when active */
+  }
+
+  .m1 {
+    font-size: 40px; /* Adjust font size for smaller screens */
+  }
+
+  #reservationForm .row > .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .cards {
+    grid-template-columns: 1fr; /* Single column layout for cards */
+  }
+
+  .cards .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .card-img {
+    height: 100%;
+    margin-bottom: 0;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+  }
+
+  .card-img img {
+    max-width: 130px;
+    max-height: 130px;
+  }
+
+  .feedback-content,
+  .feedback-username {
+    text-align: left;
+  }
+}
+
+/* Additional Styles */
+.title,
+.title1,
+.reservation-title {
+  font-family: "Single Day", cursive;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 30px;
+  text-align: center;
+}
+
+.form,
+.form1 {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+textarea {
+  height: 300px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+.menu-link,
+.about-link,
+.home-link {
+  font-family: "Single Day", cursive;
+}
+
+/* Avatar Styles */
+.avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.avatar-container img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.avatar-container input[type="file"] {
+  margin-top: 10px;
+}
+
+#avatarPreview {
+  margin-bottom: 20px;
+}
+
+#avatarImg {
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 50%;
+}

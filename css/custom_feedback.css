@@ -1,0 +1,81 @@
+.feedback-list {
+  width: 100%;
+}
+.feedback-list .cards {
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  column-gap: 20px;
+}
+.feedback-list .cards .card {
+  width: 90%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border: none;
+  outline: none;
+  display: block;
+  padding: 10px 20px;
+  max-height: 600px;
+}
+
+.feedback-list .cards .card .card-img {
+  width: 100%;
+  text-align: center;
+  height: 200px;
+  margin-bottom: 30px;
+
+  img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .rating img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.feedback-username {
+  font-size: 25px;
+  font-weight: 700;
+  text-transform: capitalize;
+  margin: 10px;
+  text-align: center;
+}
+
+.feedback-content {
+  text-align: center;
+  color: darkgray;
+  font-size: normal;
+}
+
+@media (max-width: 767px) {
+  .feedback-list .cards {
+    grid-template-columns: 1fr;
+  }
+  .feedback-list .cards .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    .card-img {
+      height: 100%;
+      margin-bottom: 0;
+      display: flex;
+      flex-flow: column wrap;
+      justify-content: center;
+    }
+
+    .card-img img {
+      max-width: 130px;
+      max-height: 130px;
+    }
+
+    .feedback-content,
+    .feedback-username {
+      text-align: left;
+    }
+  }
+}
