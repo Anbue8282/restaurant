@@ -573,7 +573,7 @@ export default class Home {
     const note = document.getElementById("note").value;
     const _this = this;
     // validate form
-    if (!name && !phonenumber && !email && !date && !hour && !guests && !note) {
+    if (!name || !phonenumber || !email || !date || !hour || !guests || !note) {
       alert("pls fill all form");
       return;
     } else {
